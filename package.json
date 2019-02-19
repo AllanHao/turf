@@ -15,6 +15,7 @@
   "devDependencies": {
     "@types/geojson": "*",
     "@types/node": "*",
+    "acorn": "^6.1.0",
     "camelcase": "*",
     "d3-queue": "*",
     "decamelize": "*",
@@ -25,6 +26,7 @@
     "lerna": "2.8.0",
     "load-json-file": "*",
     "meow": "*",
+    "opencollective": "^1.0.3",
     "progress": "*",
     "rollup": "*",
     "rollup-plugin-typescript": "*",
@@ -33,7 +35,7 @@
     "yamljs": "*"
   },
   "dependencies": {
-    "opencollective": "^1.0.3"
+    "turf-jsts": "^1.2.3"
   },
   "collective": {
     "type": "opencollective",

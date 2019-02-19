@@ -47,7 +47,7 @@
     "@turf/truncate": "*",
     "benchmark": "*",
     "load-json-file": "*",
-    "rollup": "*",
+    "rollup": "^1.2.1",
     "tape": "*",
     "write-json-file": "*"
   },

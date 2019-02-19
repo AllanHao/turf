@@ -50,22 +50,22 @@ function buffer(geojson, radius, options) {
 
     var results = [];
     switch (geojson.type) {
-    case 'GeometryCollection':
-        geomEach(geojson, function (geometry) {
-            var buffered = bufferFeature(geometry, radius, units, steps);
-            if (buffered) results.push(buffered);
-        });
-        return featureCollection(results);
-    case 'FeatureCollection':
-        featureEach(geojson, function (feature) {
-            var multiBuffered = bufferFeature(feature, radius, units, steps);
-            if (multiBuffered) {
-                featureEach(multiBuffered, function (buffered) {
-                    if (buffered) results.push(buffered);
-                });
-            }
-        });
-        return featureCollection(results);
+        case 'GeometryCollection':
+            geomEach(geojson, function (geometry) {
+                var buffered = bufferFeature(geometry, radius, units, steps);
+                if (buffered) results.push(buffered);
+            });
+            return featureCollection(results);
+        case 'FeatureCollection':
+            featureEach(geojson, function (feature) {
+                var multiBuffered = bufferFeature(feature, radius, units, steps);
+                if (multiBuffered) {
+                    featureEach(multiBuffered, function (buffered) {
+                        if (buffered) results.push(buffered);
+                    });
+                }
+            });
+            return featureCollection(results);
     }
     return bufferFeature(geojson, radius, units, steps);
 }
@@ -112,7 +112,7 @@ function bufferFeature(geojson, radius, units, steps) {
     var reader = new GeoJSONReader();
     var geom = reader.read(projected);
     var distance = radiansToLength(lengthToRadians(radius, units), 'meters');
-    var buffered = BufferOp.bufferOp(geom, distance);
+    var buffered = BufferOp.bufferOp(geom, distance, BufferOp.CAP_FLAT,BufferOp.CAP_FLAT);
     var writer = new GeoJSONWriter();
     buffered = writer.write(buffered);
 
